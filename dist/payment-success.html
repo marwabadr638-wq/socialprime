@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم الدفع بنجاح | تشافي</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .success-box { max-width: 500px; margin: 100px auto; text-align: center; background: var(--bg-card); padding: 3rem; border-radius: 16px; box-shadow: var(--shadow-md); }
+        .success-icon { font-size: 5rem; color: var(--primary-color); margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+
+    <div class="success-box">
+        <i class="fa-solid fa-circle-check success-icon" style="font-family: sans-serif; /* fallback */ font-weight: 900; content: '\f058';">✓</i>
+        <h1 style="margin-bottom: 1rem;">تمت العملية بنجاح!</h1>
+        <p>شكراً لك. تم تأكيد الدفع واشتراكك في الدورة.</p>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">سيتم توجيهك إلى صفحة الدورة خلال ثوانٍ...</p>
+        <a id="course-link" href="#" class="btn btn-primary">الذهاب إلى الدورة الآن</a>
+    </div>
+
+    <script>
+        // Extract course_id from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course_id') || 'course_1';
+        
+        // Update link
+        const courseLink = document.getElementById('course-link');
+        courseLink.href = `course-details.html?id=${courseId}&preview=admin_password`;
+
+        // Automatically redirect after 5 seconds
+        setTimeout(() => {
+            window.location.href = courseLink.href;
+        }, 5000);
+    </script>
+</body>
+</html>

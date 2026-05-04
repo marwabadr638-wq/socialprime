@@ -1,0 +1,3 @@
+[build]
+# The path to your project's build output folder
+output_directory = "dist"
