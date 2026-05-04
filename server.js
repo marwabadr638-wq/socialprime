@@ -78,6 +78,10 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'admin.html'));
 });
 
+// Explicit health check for UptimeRobot
+app.get('/health', (req, res) => res.status(200).send('OK'));
+app.head('/', (req, res) => res.status(200).end());
+
 // Catch all for 404
 app.use((req, res) => {
     res.status(404).send('Page not found');

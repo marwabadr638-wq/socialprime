@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Auth System (Supabase Placeholder) ---
-    const SUPABASE_URL = 'https://placeholder.supabase.co';
-    const SUPABASE_ANON_KEY = 'placeholder-key';
+    // --- Auth System (Supabase) ---
+    const SUPABASE_URL = 'https://ufzwhitosnshpqxcqigf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmendoaXRvc25zaHBxeGNxaWdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0OTc0NzIsImV4cCI6MjA5MzA3MzQ3Mn0.zdVjzMkw6K5wegE2wImbAUEkYbtD2Hu2CwMrO0aDuOs';
     
     // Assign supabase globally
     try {
