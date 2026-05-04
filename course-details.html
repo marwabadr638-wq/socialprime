@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الدورة | تشافي</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .course-header { padding: 4rem 2rem; background-color: var(--primary-color); color: #fff; text-align: center; }
+        .content-locked { text-align: center; padding: 4rem; background: var(--secondary-color); border-radius: 16px; margin: 2rem auto; max-width: 600px; }
+        .course-video { width: 100%; height: 500px; background: #000; display: flex; justify-content: center; align-items: center; color: #fff; margin-bottom: 2rem; border-radius: 16px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; height: 80px;">
+            <a href="index.html" class="logo">تشافي</a>
+            <a href="index.html" class="btn btn-outline" style="padding: 0.5rem 1.5rem;">العودة للرئيسية</a>
+        </div>
+    </header>
+
+    <div class="course-header" style="margin-top: 80px;">
+        <h1>دورة التوازن الداخلي</h1>
+        <p>تعلم كيفية الوصول للسلام الداخلي وتقنيات التأمل المتقدمة.</p>
+    </div>
+
+    <div class="container" style="padding: 4rem 2rem; min-height: 50vh;" id="content-container">
+        <!-- Content will be injected here based on access -->
+        <div class="content-locked" id="locked-state">
+            <h2 style="color: var(--primary-color);">هذا المحتوى محمي</h2>
+            <p style="margin-bottom: 2rem;">الرجاء شراء الدورة للوصول إلى المحتوى التعليمي.</p>
+            <button class="btn btn-primary" onclick="buyCourse('course_1')">شراء الدورة (45 د.ك)</button>
+        </div>
+
+        <div id="unlocked-state" style="display: none;">
+            <div class="course-video">
+                <h2>مشغل الفيديو (Placeholder)</h2>
+            </div>
+            <h3>الدرس الأول: مقدمة في التوازن الداخلي</h3>
+            <p>محتوى الدرس...</p>
+        </div>
+    </div>
+
+    <script src="js/payment-service.js"></script>
+    <script>
+        // Simulate checking access from Backend
+        async function checkAccess() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const preview = urlParams.get('preview');
+
+            if (preview === 'admin_password') {
+                document.getElementById('locked-state').style.display = 'none';
+                document.getElementById('unlocked-state').style.display = 'block';
+                return;
+            }
+
+            // Real implementation would fetch /api/courses/:id/access here
+            // For now, it stays locked until purchased.
+        }
+
+        checkAccess();
+    </script>
+</body>
+</html>
