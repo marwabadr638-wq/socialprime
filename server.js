@@ -14,7 +14,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(__dirname));
 
 // --- API ROUTES ---
 
@@ -75,7 +75,7 @@ app.get('/api/courses/:course_id/access', async (req, res) => {
 
 // Serve frontend paths
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'admin.html'));
+    res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
 // Explicit health check for UptimeRobot
