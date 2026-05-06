@@ -58,6 +58,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if(heroLogo) heroLogo.src = logoSrc;
     }
 
+    // --- Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.onclick = function() {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fa-solid fa-xmark';
+            } else {
+                icon.className = 'fa-solid fa-bars';
+            }
+        };
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.onclick = function() {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+            };
+        });
+    }
+
     // --- Scroll Animations (Fade-in) ---
     const observerOptions = {
         threshold: 0.1,
