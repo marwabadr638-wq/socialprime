@@ -119,8 +119,36 @@ img {
 }
 
 /* =========================================
-   ANIMATIONS (Fade In & Logo)
+   ANIMATIONS (Scroll Reveal)
 ========================================= */
+.reveal {
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform, opacity;
+}
+
+.reveal-up {
+    transform: translateY(50px);
+}
+
+.reveal-right {
+    transform: translateX(50px);
+}
+
+.reveal-left {
+    transform: translateX(-50px);
+}
+
+.zoom-in {
+    transform: scale(0.9);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Backward compatibility for fade-in */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -132,9 +160,9 @@ img {
     transform: translateY(0);
 }
 
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
 
 /* Logo Float Animation */
 @keyframes floatLogo {
@@ -438,11 +466,46 @@ section {
 }
 
 .card-img-top {
-    height: 200px;
+    height: 220px;
     width: 100%;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     border: none;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-img {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--bg-main) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-color);
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.placeholder-img i {
+    font-size: 3rem;
+    opacity: 0.2;
+    transition: var(--transition);
+}
+
+.placeholder-img span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.5;
+    letter-spacing: 1px;
+}
+
+.card:hover .placeholder-img {
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--secondary-color) 100%);
+}
+
+.card:hover .placeholder-img i {
+    opacity: 0.4;
+    transform: scale(1.1);
 }
 
 .card-body {
@@ -476,11 +539,41 @@ section {
 .booking-container {
     background-color: var(--bg-card);
     border-radius: var(--radius-lg);
-    padding: 3rem;
+    padding: 4rem 3rem;
     box-shadow: var(--shadow-md);
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.booking-btn-large {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.5rem 4rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(44, 76, 59, 0.25);
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.booking-btn-large:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(44, 76, 59, 0.35);
+    background-color: var(--primary-light);
+    color: white;
+}
+
+.booking-btn-large i {
+    font-size: 1.8rem;
 }
 
 /* Forms */
@@ -594,12 +687,77 @@ footer p {
 
 /* Responsive */
 @media (max-width: 768px) {
-    nav { height: 80px; }
+    nav { 
+        height: 75px; 
+        padding: 0 1rem;
+    }
+    
+    .nav-logo {
+        height: 55px;
+    }
+
     .nav-links { display: none; }
-    .hero { flex-direction: column; text-align: center; padding-top: 100px; }
-    .hero-content { margin-bottom: 2rem; }
-    .hero-buttons { justify-content: center; }
-    .hero-logo-anim { max-width: 90%; }
+    
+    .nav-actions {
+        gap: 0.8rem;
+    }
+
+    .nav-actions .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hero { 
+        flex-direction: column; 
+        text-align: center; 
+        padding: 120px 0 60px;
+    }
+    
+    .hero-content { 
+        margin-bottom: 3.5rem; 
+        padding: 0 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-buttons { 
+        justify-content: center; 
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-logo-anim { 
+        max-width: 80%; 
+        margin-top: 1rem;
+    }
+    
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     section { padding: 4rem 0; }
+    
+    .booking-container {
+        padding: 3rem 1.5rem;
+    }
+    
+    .booking-btn-large {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.2rem;
+        width: 100%;
+    }
 }

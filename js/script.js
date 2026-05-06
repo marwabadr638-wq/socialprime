@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.fade-in').forEach(el => {
+    document.querySelectorAll('.fade-in, .reveal').forEach(el => {
         observer.observe(el);
     });
 
